@@ -110,7 +110,7 @@ export default function OasisPalaceOstraLanding() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 1 }}
-                        className="flex flex-row sm:flex-row gap-4"
+                        className="flex flex-col sm:flex-row gap-4"
                     >
                         <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white border-none px-8 py-6 text-lg">
                             <Link href="/oasis-palace-ostra/details">Explore Details</Link>
