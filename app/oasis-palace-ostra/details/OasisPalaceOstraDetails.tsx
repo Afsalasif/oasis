@@ -310,8 +310,7 @@ export default function OasisPalaceOstraDetails() {
                 </div>
                 <div>
                   <p className="text-gray-900 capitalize font-medium">
-                    Brought you By
-                  </p>
+                  Brought to you by </p>
                   <h3 className="text-xl font-serif text-[#c0aa83]">
                     Noor Saray Real Estate
                   </h3>
@@ -1273,7 +1272,7 @@ export default function OasisPalaceOstraDetails() {
                     </div>
                     <div>
                       <p className="text-gray-700 capitalize font-medium">
-                        Brought you By
+                      Brought to you by 
                       </p>
                       <h3 className="text-xl font-serif text-[#c0aa83]">
                         Noor Saray Real Estate
