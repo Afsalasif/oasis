@@ -23,13 +23,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
           <div className="bg-[#c0aa83] p-6 text-white">
             <div className="flex items-center">
-              <div className="relative w-10 h-10 mr-3">
-                <div className="absolute inset-0 rounded-full border border-white/70"></div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="font-serif text-sm font-light text-white italic tracking-wider">NS</div>
-                </div>
-              </div>
-              <h3 className="text-xl font-medium">Contact Noor Saray</h3>
+            <div className="relative w-20 h-20 mr-4">
+                                    {/* <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="font-serif text-xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
+                                    </div> */}
+                                    <img className="h-full w-full " src="/noorsaraylogo.svg" alt="" />
+                                </div>
+              {/* <h3 className="text-xl font-medium">Contact Noor Saray</h3> */}
             </div>
           </div>
 
@@ -102,23 +103,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </select>
               </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-gray-700">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0aa83] focus:border-transparent"
-                ></textarea>
-              </div>
+              
 
               <Button className="w-full bg-[#c0aa83] hover:bg-[#b09973] text-white">Submit Inquiry</Button>
 
-              <div className="text-center mt-4">
-                <p className="text-sm text-gray-500">You can also reach us directly at:</p>
-                <p className="text-[#c0aa83] font-medium">+971 4 123 4567</p>
-              </div>
+            
 
               <p className="text-xs text-gray-500 text-center">
                 By submitting this form, you agree to our privacy policy and terms of service.

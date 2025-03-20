@@ -16,6 +16,17 @@ export default function OasisPalaceOstraLanding() {
     const openContactModal = () => {
         setIsContactModalOpen(true)
       }
+      const payments = [
+        { percent: '10%', title: 'Down Payment', subtitle: 'On Booking', date: '' },
+        { percent: '10%', title: '1st Installment', subtitle: '', date: 'June 2025' },
+        { percent: '10%', title: '2nd Installment', subtitle: '', date: 'January 2026' },
+        { percent: '10%', title: '3rd Installment', subtitle: '', date: 'July 2026' },
+        { percent: '10%', title: '4th Installment', subtitle: 'Upon 25% Construction Completion', date: 'April 2027' },
+        { percent: '10%', title: '5th Installment', subtitle: 'Upon 40% Construction Completion', date: 'December 2027' },
+        { percent: '10%', title: '6th Installment', subtitle: 'Upon 60% Construction Completion', date: 'May 2028' },
+        { percent: '10%', title: '7th Installment', subtitle: 'Upon 80% Construction Completion', date: 'December 2028' },
+        { percent: '20%', title: '8th Installment', subtitle: 'Upon 100% Construction Completion', date: 'September 2029' },
+      ];
     
       const closeContactModal = () => {
         setIsContactModalOpen(false)
@@ -44,6 +55,7 @@ export default function OasisPalaceOstraLanding() {
             {/* Hero Section */}
             <section className="relative h-screen">
                 <div className="absolute inset-0 bg-black/30 z-10"></div>
+                <div className="absolute left-10 top-5 h-25 z-30 w-25"><img className="h-full invert w-full" src="/noorsaraylogo.svg" alt="" /></div>
                 <div className="absolute inset-0">
                     <Image
                         src="/hero.png"
@@ -71,7 +83,7 @@ export default function OasisPalaceOstraLanding() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-serif text-white mb-6 leading-tight"
+                        className="text-4xl uppercase md:text-6xl lg:text-7xl font-serif text-white mb-6 leading-tight"
                     >
                         Oasis Palace Ostra
                     </motion.h1>
@@ -80,19 +92,19 @@ export default function OasisPalaceOstraLanding() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
-                        className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl"
+                        className="text-xl uppercase md:text-2xl text-white/90 mb-8 max-w-3xl"
                     >
                         First Palace Branded Villas in Dubai
                     </motion.p>
 
-                    <motion.p
+                    {/* <motion.p
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8 }}
                         className="text-lg md:text-xl text-white/80 mb-12 max-w-2xl italic"
                     >
                         Where Luxury, Royalty & Heritage All Come Together To Create A Premium Experience
-                    </motion.p>
+                    </motion.p> */}
 
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
@@ -137,24 +149,25 @@ export default function OasisPalaceOstraLanding() {
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="mb-6 md:mb-0">
                             <div className="flex items-center">
-                                <div className="relative w-12 h-12 mr-4">
-                                    <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
+                                <div className="relative w-20 h-20 mr-4">
+                                    {/* <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
                                     <div className="absolute inset-0 flex items-center justify-center">
                                         <div className="font-serif text-xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
-                                    </div>
+                                    </div> */}
+                                    <img className="h-full w-full " src="/noorsaraylogo.svg" alt="" />
                                 </div>
                                 <div>
-                                    <p className="text-gray-900 font-medium">Exclusively Presented By</p>
+                                    <p className="text-gray-900 font-medium">Brought you By</p>
                                     <h3 className="text-xl font-serif text-[#c0aa83]">Noor Saray Real Estate</h3>
                                 </div>
                             </div>
                         </div>
                         <div className="flex gap-4">
-                            <Button asChild variant="outline" className="border-[#c0aa83] capitalize text-[#c0aa83] hover:bg-[#c0aa83]/5">
+                            {/* <Button asChild variant="outline" className="border-[#c0aa83] capitalize text-[#c0aa83] hover:bg-[#c0aa83]/5">
                                 <Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
                                     contact us
                                 </Link>
-                            </Button>
+                            </Button> */}
                             <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white">
                                 <Link href="tel:+97141234567">+971 50 152 7835</Link>
                             </Button>
@@ -210,7 +223,7 @@ export default function OasisPalaceOstraLanding() {
                             </div>
 
                             <div className="flex items-center">
-                                <Badge className="bg-red-100 text-red-800 border-none mr-3">Limited Units</Badge>
+                                <Badge className="bg-red-100 text-red-800 capitalize border-none mr-3">Limited time Opportunity</Badge>
                                 <p className="text-gray-700 text-sm">Booking starts Monday</p>
                             </div>
                         </motion.div>
@@ -454,88 +467,40 @@ export default function OasisPalaceOstraLanding() {
             </section>
 
             {/* Payment Plan */}
-            <section className="py-20 bg-black text-black">
-                <div className="container mx-auto px-4">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        viewport={{ once: true }}
-                        className="max-w-4xl mx-auto"
-                    >
-                        <div className="text-center mb-12">
-                            <h2 className="text-3xl md:text-4xl font-serif mb-4">
-                                Payment <span className="text-[#c0aa83]">Plan</span>
-                            </h2>
-                            <p className="text-gray-300 max-w-2xl mx-auto">
-                                A flexible payment plan designed to make your investment journey smooth and convenient.
-                            </p>
-                        </div>
+           
 
-                        <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 md:p-12">
-                            <div className="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-white/10 pb-10">
-                                <div className="text-center md:text-left mb-6 md:mb-0">
-                                    <h3 className="text-2xl font-medium mb-2">80:20 Payment Plan</h3>
-                                    <p className="text-gray-300">Simple and straightforward</p>
-                                </div>
-                                <div className="flex items-center">
-                                    <div className="bg-[#c0aa83]/20 p-3 rounded-full mr-4">
-                                        <Clock className="h-6 w-6 text-[#c0aa83]" />
-                                    </div>
-                                    <div>
-                                        <p className="text-sm text-gray-300">Handover</p>
-                                        <p className="font-medium">September 2029</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div className="bg-white/5 rounded-lg p-6">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h4 className="font-medium">During Construction</h4>
-                                        <span className="text-2xl font-semibold text-[#c0aa83]">80%</span>
-                                    </div>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <Check className="h-5 w-5 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-300">Booking amount</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <Check className="h-5 w-5 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-300">Installments linked to construction milestones</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <Check className="h-5 w-5 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-300">Flexible payment schedule</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <div className="bg-white/5 rounded-lg p-6">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <h4 className="font-medium">On Handover</h4>
-                                        <span className="text-2xl font-semibold text-[#c0aa83]">20%</span>
-                                    </div>
-                                    <ul className="space-y-3">
-                                        <li className="flex items-start">
-                                            <Check className="h-5 w-5 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-300">Final payment upon handover</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <Check className="h-5 w-5 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-300">Receive keys to your new home</span>
-                                        </li>
-                                        <li className="flex items-start">
-                                            <Check className="h-5 w-5 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                                            <span className="text-gray-300">Begin your luxury living experience</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.div>
+    <section className="py-12 md:py-16 bg-neutral-100 text-black">
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-8 md:mb-12">
+            <h2 className="text-3xl md:text-4xl font-serif bg-[#c0aa83] text-white py-3 md:py-4 px-4 md:px-8 tracking-wide md:tracking-widest">
+              PAYMENT PLAN
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12">
+            {payments.map((payment, index) => (
+              <div key={index} className="text-center px-4">
+                <div className="mb-1">
+                  <span className="text-4xl md:text-5xl font-light text-[#c0aa83]">{payment.percent}</span>
                 </div>
-            </section>
+                <div className="mb-1">
+                  <h3 className="text-base md:text-lg font-medium">{payment.title}</h3>
+                </div>
+                <div className="text-xs md:text-sm text-gray-600 mb-1">
+                  {payment.subtitle}
+                </div>
+                <div className="text-xs md:text-sm">
+                  {payment.date}
+                </div>
+                <div className="w-full h-px bg-[#c0aa83] mt-2 md:mt-3"></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
             {/* CTA Section */}
             <section className="py-20 bg-white">
@@ -561,12 +526,13 @@ export default function OasisPalaceOstraLanding() {
 
                             <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
                                 <div className="flex items-center">
-                                    <div className="relative w-16 h-16 mr-4">
-                                        <div className="absolute inset-0 rounded-full border-2 border-[#c0aa83]"></div>
-                                        <div className="absolute inset-0 flex items-center justify-center">
-                                            <div className="font-serif text-2xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
-                                        </div>
-                                    </div>
+                                <div className="relative w-20 h-20 mr-4">
+                                    {/* <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                        <div className="font-serif text-xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
+                                    </div> */}
+                                    <img className="h-full w-full " src="/noorsaraylogo.svg" alt="" />
+                                </div>
                                     <div>
                                         <p className="text-gray-700">For inquiries, contact</p>
                                         <h3 className="text-xl font-serif text-[#c0aa83]">Noor Saray Real Estate</h3>
