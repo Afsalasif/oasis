@@ -7,14 +7,22 @@ import { motion } from "framer-motion"
 import { ArrowRight, Calendar, MapPin, Clock, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import ContactModal from "@/components/ContactModal"
 
 export default function OasisPalaceOstraLanding() {
     const [isVisible, setIsVisible] = useState(false)
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false)
 
     useEffect(() => {
         setIsVisible(true)
     }, [])
-
+    const openContactModal = () => {
+        setIsContactModalOpen(true)
+      }
+    
+      const closeContactModal = () => {
+        setIsContactModalOpen(false)
+      }
     const fadeIn = {
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -32,6 +40,7 @@ export default function OasisPalaceOstraLanding() {
 
     return (
         <div className="bg-white">
+            <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
             {/* Hero Section */}
             <section className="relative h-screen">
                 <div className="absolute inset-0 bg-black/30 z-10"></div>
@@ -89,7 +98,7 @@ export default function OasisPalaceOstraLanding() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 1 }}
-                        className="flex flex-col sm:flex-row gap-4"
+                        className="flex flex-row sm:flex-row gap-4"
                     >
                         <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white border-none px-8 py-6 text-lg">
                             <Link href="/oasis-palace-ostra/details">Explore Details</Link>
@@ -445,7 +454,7 @@ export default function OasisPalaceOstraLanding() {
             </section>
 
             {/* Payment Plan */}
-            <section className="py-20 bg-gray-900 text-white">
+            <section className="py-20 bg-black text-black">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -569,13 +578,11 @@ export default function OasisPalaceOstraLanding() {
                                         <Link href="/oasis-palace-ostra/details">Explore Details</Link>
                                     </Button>
                                     <Button
-                                        asChild
                                         variant="outline"
-                                        className="border-gray-300 text-gray-700 capitalize hover:bg-gray-50 px-8 py-6 text-lg"
+                                        className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                                        onClick={openContactModal}
                                     >
-                                        <Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                                            contact sales team
-                                        </Link>
+                                        Contact Sales Team
                                     </Button>
                                 </div>
                             </div>

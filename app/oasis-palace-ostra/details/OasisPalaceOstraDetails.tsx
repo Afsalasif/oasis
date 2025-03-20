@@ -818,7 +818,7 @@ export default function OasisPalaceOstraDetails() {
                   </div>
                 </div>
 {/* start */}
-                {/* <div className="bg-white p-8 rounded-lg shadow-lg">
+                <div className="bg-white p-8 rounded-lg shadow-lg">
                   <div className="flex items-center mb-6">
                     <div className="relative w-10 h-10 mr-3">
                       <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
@@ -909,7 +909,7 @@ export default function OasisPalaceOstraDetails() {
                       By submitting this form, you agree to our privacy policy and terms of service.
                     </p>
                   </div>
-                </div> */}
+                </div>
                 {/* end */}
               </div>
             </motion.div>
