@@ -1,14 +1,28 @@
-"use client"
-import { X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog"
+"use client";
+import { useState } from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
 
 interface ContactModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent actual form submission
+    setIsSubmitting(true);
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }, 2000); // Simulate network delay
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogOverlay className="bg-black/50 backdrop-blur-sm" />
@@ -21,102 +35,101 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             <X className="h-5 w-5" />
           </button>
 
-          <div className="bg-[#c0aa83] p-6 text-white">
-            <div className="flex items-center">
-            <div className="relative w-20 h-20 mr-4">
-                                    {/* <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="font-serif text-xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
-                                    </div> */}
-                                    <img className="h-full w-full " src="/noorsaraylogo.svg" alt="" />
-                                </div>
-              {/* <h3 className="text-xl font-medium">Contact Noor Saray</h3> */}
-            </div>
+          <div className="bg-[#c0aa83] p-6 text-white flex items-center">
+            <img className="h-20 w-20" src="/noorsaraylogo.svg" alt="Noor Saray Logo" />
           </div>
 
           <div className="p-6">
-            <p className="text-gray-600 mb-6">
-              Our dedicated sales team is ready to assist you with any inquiries about Oasis Palace Ostra. Fill out the
-              form below and we'll get back to you shortly.
-            </p>
-
-            <div className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <label htmlFor="firstName" className="text-sm font-medium text-gray-700">
-                    First Name
-                  </label>
-                  <input
-                    type="text"
-                    id="firstName"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0aa83] focus:border-transparent"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="lastName" className="text-sm font-medium text-gray-700">
-                    Last Name
-                  </label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0aa83] focus:border-transparent"
-                  />
-                </div>
+            {isSubmitted ? (
+              <div className="text-center">
+                <h3 className="text-lg font-semibold text-gray-700">Thank you!</h3>
+                <p className="text-gray-600 mt-2">We've received your inquiry and will get back to you soon.</p>
+                <Button className="mt-4 bg-[#c0aa83] hover:bg-[#b09973] text-white w-full" onClick={onClose}>
+                  Close
+                </Button>
               </div>
+            ) : (
+              <>
+                <p className="text-gray-600 mb-6">
+                  Our dedicated sales team is ready to assist you. Fill out the form below, and we'll get back to you
+                  shortly.
+                </p>
 
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-gray-700">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0aa83] focus:border-transparent"
-                />
-              </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">First Name</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium text-gray-700">Last Name</label>
+                      <input
+                        type="text"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
+                        required
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </div>
 
-              <div className="space-y-2">
-                <label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                  Phone
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0aa83] focus:border-transparent"
-                />
-              </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Email</label>
+                    <input
+                      type="email"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
+                      required
+                      disabled={isSubmitting}
+                    />
+                  </div>
 
-              <div className="space-y-2">
-                <label htmlFor="villaType" className="text-sm font-medium text-gray-700">
-                  Interested In
-                </label>
-                <select
-                  id="villaType"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#c0aa83] focus:border-transparent"
-                >
-                  <option value="">Select Villa Type</option>
-                  <option value="4br-basement">4 Bedroom Villa with Basement</option>
-                  <option value="5br-no-basement">5 Bedroom Villa without Basement</option>
-                  <option value="5br-basement">5 Bedroom Villa with Basement</option>
-                  <option value="5br-drop">5 Bedroom with Basement - Drop Type</option>
-                  <option value="6br-basement">6 Bedroom Villa with Basement</option>
-                </select>
-              </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Phone</label>
+                    <input
+                      type="tel"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
+                      required
+                      disabled={isSubmitting}
+                    />
+                  </div>
 
-              
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">Interested In</label>
+                    <select
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
+                      required
+                      disabled={isSubmitting}
+                    >
+                      <option value="">Select Villa Type</option>
+                      <option value="4br-basement">4 Bedroom Villa with Basement</option>
+                      <option value="5br-no-basement">5 Bedroom Villa without Basement</option>
+                      <option value="5br-basement">5 Bedroom Villa with Basement</option>
+                      <option value="5br-drop">5 Bedroom with Basement - Drop Type</option>
+                      <option value="6br-basement">6 Bedroom Villa with Basement</option>
+                    </select>
+                  </div>
 
-              <Button className="w-full bg-[#c0aa83] hover:bg-[#b09973] text-white">Submit Inquiry</Button>
+                  <Button
+                    type="submit"
+                    className="w-full bg-[#c0aa83] hover:bg-[#b09973] text-white"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Submitting..." : "Submit Inquiry"}
+                  </Button>
 
-            
-
-              <p className="text-xs text-gray-500 text-center">
-                By submitting this form, you agree to our privacy policy and terms of service.
-              </p>
-            </div>
+                  <p className="text-xs text-gray-500 text-center">
+                    By submitting this form, you agree to our privacy policy and terms of service.
+                  </p>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-
