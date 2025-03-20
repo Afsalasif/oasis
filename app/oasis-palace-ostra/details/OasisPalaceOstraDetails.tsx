@@ -9,10 +9,20 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
+import ContactModal from "@/components/ContactModal"
 
 export default function OasisPalaceOstraDetails() {
   const [activeTab, setActiveTab] = useState("overview")
   const [isVisible, setIsVisible] = useState(false)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+
+  const openContactModal = () => {
+    setIsContactModalOpen(true)
+  }
+
+  const closeContactModal = () => {
+    setIsContactModalOpen(false)
+  }
 
   useEffect(() => {
     setIsVisible(true)
@@ -125,6 +135,7 @@ export default function OasisPalaceOstraDetails() {
 
   return (
     <div className="bg-white">
+      <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
       {/* Header */}
       <div className="bg-white sticky top-0 z-50 border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
@@ -147,10 +158,12 @@ export default function OasisPalaceOstraDetails() {
                 </div>
                 <span className="text-gray-700">Noor Saray Real Estate</span>
               </div>
-              <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white">
-                <Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                  contact sales team
-                </Link>
+              <Button
+                variant="outline"
+                className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                onClick={openContactModal}
+              >
+                Contact Sales Team
               </Button>
             </div>
           </div>
@@ -477,10 +490,12 @@ export default function OasisPalaceOstraDetails() {
 
                       <div className="flex flex-col sm:flex-row gap-4">
                         {/* <Button className="bg-[#c0aa83] hover:bg-[#b09973] text-white">Download Floor Plan</Button> */}
-                        <Button variant="outline" className="border-gray-300 capitalize">
-                          <Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                            request More info
-                          </Link>
+                        <Button
+                          variant="outline"
+                          className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                          onClick={openContactModal}
+                        >
+                          Contact Sales Team
                         </Button>
                       </div>
                     </div>
@@ -705,9 +720,13 @@ export default function OasisPalaceOstraDetails() {
                       <p className="text-gray-600 text-sm mb-4">
                         Experience the location firsthand with a guided tour of the development site.
                       </p>
-                      <Button className="w-full bg-[#c0aa83] hover:bg-[#b09973] text-white"><Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                        Book Site Visit
-                      </Link></Button>
+                      <Button
+                        variant="outline"
+                        className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                        onClick={openContactModal}
+                      >
+                        Contact Sales Team
+                      </Button>
                     </div>
                   </div>
                 </div>
@@ -752,9 +771,13 @@ export default function OasisPalaceOstraDetails() {
                   Our sales gallery features detailed scale models, material samples, and immersive visualizations of
                   the project.
                 </p>
-                <Button className="bg-[#c0aa83] hover:bg-[#b09973] text-white"><Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                  Schdeule A Visit
-                </Link></Button>
+                <Button
+                  variant="outline"
+                  className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                  onClick={openContactModal}
+                >
+                  Contact Sales Team
+                </Button>
               </div>
             </motion.div>
           </TabsContent>
@@ -812,12 +835,16 @@ export default function OasisPalaceOstraDetails() {
                       With limited units available, we recommend registering your interest early to secure your
                       preferred villa type.
                     </p>
-                    <Button className="w-full bg-[#c0aa83] hover:bg-[#b09973] text-white"><Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                                                                Register Intrest
-                                                            </Link></Button>
+                    <Button
+                      variant="outline"
+                      className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                      onClick={openContactModal}
+                    >
+                      Contact Sales Team
+                    </Button>
                   </div>
                 </div>
-{/* start */}
+                {/* start */}
                 <div className="bg-white p-8 rounded-lg shadow-lg">
                   <div className="flex items-center mb-6">
                     <div className="relative w-10 h-10 mr-3">
@@ -948,10 +975,12 @@ export default function OasisPalaceOstraDetails() {
                 </div>
 
                 <div className="flex flex-col gap-4">
-                  <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white border-none px-8 py-4">
-                  <Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                                            contact sales team
-                                        </Link>
+                  <Button
+                    variant="outline"
+                    className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                    onClick={openContactModal}
+                  >
+                    Contact Sales Team
                   </Button>
                   <Button
                     asChild
