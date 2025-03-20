@@ -115,9 +115,13 @@ export default function OasisPalaceOstraLanding() {
                         <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white border-none px-8 py-6 text-lg">
                             <Link href="/oasis-palace-ostra/details">Explore Details</Link>
                         </Button>
-                        <Button asChild variant="outline" className="border-white bg-transparent text-white hover:bg-white/10 px-8 py-6 text-lg">
-                            <Link href="#villa-types">View Villa Types</Link>
-                        </Button>
+                        <Button
+                                        variant="outline"
+                                        className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                                        onClick={openContactModal}
+                                    >
+                                        Contact Us
+                                    </Button>
                     </motion.div>
                 </div>
 
