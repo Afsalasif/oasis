@@ -16,7 +16,7 @@ const HeroSlider = () => {
         "/lux.png",
         "/hero.png",
         "/hero2.png",
-        
+
     ]
     useEffect(() => {
         const interval = setInterval(() => {
@@ -75,7 +75,7 @@ export default function OasisPalaceOstraLanding() {
     const openContactModal = () => {
         setIsContactModalOpen(true)
     }
- 
+
     const payments = [
         { percent: '10%', title: 'Down Payment', subtitle: 'On Booking', date: '' },
         { percent: '10%', title: '1st Installment', subtitle: '', date: 'June 2025' },
@@ -458,11 +458,12 @@ export default function OasisPalaceOstraLanding() {
                                 <div className="w-10 h-10 rounded-full bg-[#c0aa83]/10 flex items-center justify-center mr-4">
                                     <span className="text-[#c0aa83] font-serif">03</span>
                                 </div>
-                                <h3 className="text-xl font-medium text-gray-900">Smart Home Technology</h3>
+                                <h3 className="text-xl font-medium text-gray-900">Waterfront Serenity</h3>
                             </div>
                             <p className="text-gray-600 pl-14">
-                                State-of-the-art automation systems for lighting, climate, security, and entertainment.
+                                Experience tranquil lagoon views, crystal-clear waters, and private beachfront access for a serene lifestyle.
                             </p>
+
                         </div>
 
                         <div className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 border-t-2 border-[#c0aa83]">
