@@ -1336,13 +1336,7 @@ export default function OasisPalaceOstraDetails() {
                   >
                     Contact Sales Team
                   </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-4"
-                  >
-                    <Link href="tel:+97141234567">+971 50 152 7835</Link>
-                  </Button>
+                 
                 </div>
               </div>
             </div>
