@@ -297,17 +297,7 @@ export default function OasisPalaceOstraDetails() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
               <div className="flex items-center">
-                <div className="relative w-20 h-20 mr-4">
-                  {/* <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="font-serif text-xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
-                                    </div> */}
-                  <img
-                    className="h-full w-full "
-                    src="/noorsaraylogo.svg"
-                    alt=""
-                  />
-                </div>
+                
                 <div>
                   <p className="text-gray-900 capitalize font-medium">
                   Brought to you by </p>
@@ -1259,17 +1249,7 @@ export default function OasisPalaceOstraDetails() {
               <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div>
                   <div className="flex items-center mb-4">
-                    <div className="relative w-20 h-20 mr-4">
-                      {/* <div className="absolute inset-0 rounded-full border border-[#c0aa83]/70"></div>
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="font-serif text-xl font-light text-[#c0aa83] italic tracking-wider">NS</div>
-                                    </div> */}
-                      <img
-                        className="h-full w-full "
-                        src="/noorsaraylogo.svg"
-                        alt=""
-                      />
-                    </div>
+                 
                     <div>
                       <p className="text-gray-700 capitalize font-medium">
                       Brought to you by 
