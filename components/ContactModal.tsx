@@ -1,8 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { E164Number } from "libphonenumber-js";
 import { Dialog, DialogContent, DialogOverlay } from "@/components/ui/dialog";
+import PhoneInput, { isValidPhoneNumber } from "react-phone-number-input";
+import { getCountries, CountryCode } from "libphonenumber-js";
+import "react-phone-number-input/style.css";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -12,15 +16,49 @@ interface ContactModalProps {
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState<E164Number | undefined>();
+  const [countryCode, setCountryCode] = useState<CountryCode | undefined>("AE");
+  const [phoneError, setPhoneError] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    interest: "",
+  });
+
+  // Fetch user's country from IP and validate it
+  useEffect(() => {
+    fetch("https://ipapi.co/json/")
+      .then((res) => res.json())
+      .then((data) => {
+        const country = data.country as CountryCode;
+        if (getCountries().includes(country)) {
+          setCountryCode(country);
+        } else {
+          setCountryCode("AE"); // Default to UAE if invalid
+        }
+      })
+      .catch(() => console.log("Could not fetch country"));
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent actual form submission
-    setIsSubmitting(true);
+    e.preventDefault();
+    setPhoneError("");
 
+    if (!phoneNumber || !isValidPhoneNumber(phoneNumber)) {
+      setPhoneError("Please enter a valid phone number.");
+      return;
+    }
+
+    setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 2000); // Simulate network delay
+    }, 2000);
   };
 
   return (
@@ -56,11 +94,15 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Name Fields */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-gray-700">First Name</label>
                       <input
                         type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
                         required
                         disabled={isSubmitting}
@@ -70,6 +112,9 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       <label className="text-sm font-medium text-gray-700">Last Name</label>
                       <input
                         type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
                         className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
                         required
                         disabled={isSubmitting}
@@ -77,29 +122,41 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     </div>
                   </div>
 
+                  {/* Email Field */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Email</label>
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
                       required
                       disabled={isSubmitting}
                     />
                   </div>
 
+                  {/* Phone Input with Validation */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Phone</label>
-                    <input
-                      type="tel"
+                    <PhoneInput
+                      defaultCountry={countryCode}
+                      value={phoneNumber}
+                      onChange={setPhoneNumber}
+                      international
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
-                      required
                       disabled={isSubmitting}
                     />
+                    {phoneError && <p className="text-red-500 text-xs">{phoneError}</p>}
                   </div>
 
+                  {/* Interest Selection */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">Interested In</label>
                     <select
+                      name="interest"
+                      value={formData.interest}
+                      onChange={handleChange}
                       className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-[#c0aa83]"
                       required
                       disabled={isSubmitting}
@@ -113,6 +170,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     </select>
                   </div>
 
+                  {/* Submit Button */}
                   <Button
                     type="submit"
                     className="w-full bg-[#c0aa83] hover:bg-[#b09973] text-white"
