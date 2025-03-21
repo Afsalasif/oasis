@@ -8,6 +8,7 @@ import { ArrowRight, Calendar, MapPin, Clock, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import ContactModal from "@/components/ContactModal"
+import { Separator } from "@/components/ui/separator"
 
 export default function OasisPalaceOstraLanding() {
     const [isVisible, setIsVisible] = useState(false)
@@ -15,8 +16,8 @@ export default function OasisPalaceOstraLanding() {
 
     const openContactModal = () => {
         setIsContactModalOpen(true)
-      }
-      const payments = [
+    }
+    const payments = [
         { percent: '10%', title: 'Down Payment', subtitle: 'On Booking', date: '' },
         { percent: '10%', title: '1st Installment', subtitle: '', date: 'June 2025' },
         { percent: '10%', title: '2nd Installment', subtitle: '', date: 'January 2026' },
@@ -26,11 +27,11 @@ export default function OasisPalaceOstraLanding() {
         { percent: '10%', title: '6th Installment', subtitle: 'Upon 60% Construction Completion', date: 'May 2028' },
         { percent: '10%', title: '7th Installment', subtitle: 'Upon 80% Construction Completion', date: 'December 2028' },
         { percent: '20%', title: '8th Installment', subtitle: 'Upon 100% Construction Completion', date: 'September 2029' },
-      ];
-    
-      const closeContactModal = () => {
+    ];
+
+    const closeContactModal = () => {
         setIsContactModalOpen(false)
-      }
+    }
     useEffect(() => {
         setIsVisible(true)
     }, [])
@@ -55,7 +56,12 @@ export default function OasisPalaceOstraLanding() {
             {/* Hero Section */}
             <section className="relative h-screen">
                 <div className="absolute inset-0 bg-black/30 z-10"></div>
-                <div className="absolute left-10 top-5 h-25 z-30 w-25"><img className="h-full invert w-full" src="/noorsaraylogo.svg" alt="" /></div>
+                <div className="flex items-center justify-center">
+
+                    <div className=" h-40 z-30 w-40">
+                        <img className="h-full invert w-full" src="/noorsaraylogo.svg" alt="" /></div>
+                </div>
+
                 <div className="absolute inset-0">
                     <Image
                         src="/hero.png"
@@ -111,21 +117,21 @@ export default function OasisPalaceOstraLanding() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 1 }}
                         className="flex flex-col sm:flex-row gap-4"
-                    >
-                        <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white border-none px-8 py-6 text-lg">
-                            <Link href="/oasis-palace-ostra/details">Explore Details</Link>
+                    ><Button asChild variant="outline" className="border-white text-black hover:bg-white/10 px-8 py-6 text-lg">
+                            <Link href="#villa-types">View Villa Types</Link>
                         </Button>
                         <Button
-                                        variant="outline"
-                                        className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
-                                        onClick={openContactModal}
-                                    >
-                                        Contact Us
-                                    </Button>
+                            variant="outline"
+                            className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
+                            onClick={openContactModal}
+                        >
+
+                            Contact Us
+                        </Button>
                     </motion.div>
                 </div>
 
-                <div className="absolute bottom-10 left-0 right-0 z-30 flex justify-center">
+                {/* <div className="absolute bottom-10 left-0 right-0 z-30 flex justify-center">
                     <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -145,7 +151,7 @@ export default function OasisPalaceOstraLanding() {
                             </div>
                         </Link>
                     </motion.div>
-                </div>
+                </div> */}
             </section>
 
             <section className="py-12 bg-white border-b border-gray-100">
@@ -153,7 +159,7 @@ export default function OasisPalaceOstraLanding() {
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="mb-6 md:mb-0">
                             <div className="flex items-center">
-                                
+
                                 <div>
                                     <p className="text-gray-900 font-medium">Brought to you by</p>
                                     <h3 className="text-xl font-serif text-[#c0aa83]">Noor Saray Real Estate</h3>
@@ -166,9 +172,17 @@ export default function OasisPalaceOstraLanding() {
                                     contact us
                                 </Link>
                             </Button> */}
-                            <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white">
-                                <Link href="tel:+97141234567">+971 50 152 7835</Link>
-                            </Button>
+                            <a
+  href="tel:+97141234567"
+  className="bg-[#c0aa83] capitalize hover:bg-[#b09973] text-white px-6 py-3 z-50 rounded-lg text-center font-medium transition duration-300 shadow-md"
+>
+  Give a call
+</a>
+
+
+
+
+
                         </div>
                     </div>
                 </div>
@@ -242,6 +256,114 @@ export default function OasisPalaceOstraLanding() {
                 </div>
             </section>
 
+            <section id="villa-types" className="py-20 bg-white">
+                <div className="container mx-auto px-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-4">
+                            Exquisite <span className="text-[#c0aa83]">Villa Types</span>
+                        </h2>
+                        <p className="text-gray-600 max-w-3xl mx-auto">
+                            Choose from a range of meticulously designed villas to suit your lifestyle and preferences.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                        {[
+                            {
+                                title: "4 Bedroom Villa with Basement",
+                                plot: "9,081 sqft",
+                                bua: "7,287 sqft",
+                                price: "AED 13.13 up to 15.79 Million",
+                                image: "/bed4.png",
+                            },
+                            {
+                                title: "5 Bedroom Villa without Basement",
+                                plot: "9,548 sqft",
+                                bua: "7,986 sqft",
+                                price: "AED 14.56 up to 17.81 Million",
+                                image: "/bed5.png",
+                            },
+                            {
+                                title: "5 Bedroom Villa with Basement",
+                                plot: "11,500 sqft",
+                                bua: "10,359 sqft",
+                                price: "AED 18.25 up to 22.65 Million",
+                                image: "/bed5w.png",
+                            },
+                            {
+                                title: "5 Bedroom with Basement - Drop Type",
+                                plot: "10,935 sqft",
+                                bua: "11,111 sqft",
+                                price: "AED 22.15 up to 24.28 Million",
+                                image: "/bed5d.png",
+                            },
+                            {
+                                title: "6 Bedroom Villa with Basement",
+                                plot: "14,800 sqft",
+                                bua: "12,859 sqft",
+                                price: "AED 24.05 up to 27.96 Million",
+                                image: "/bed6.png",
+                            },
+                        ].map((villa, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: index * 0.1 }}
+                                viewport={{ once: true }}
+                                className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
+                            >
+                                <div className="relative h-64 overflow-hidden">
+                                    <Image
+                                        src={villa.image || "/placeholder.svg"}
+                                        alt={villa.title}
+                                        fill
+                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                    <div className="absolute bottom-0 left-0 p-6">
+                                        <h3 className="text-xl font-medium text-white">{villa.title}</h3>
+                                    </div>
+                                </div>
+
+                                <div className="p-6">
+                                    <div className="grid grid-cols-2 gap-4 mb-6">
+                                        <div className="flex flex-col">
+                                            <span className="text-sm text-gray-500">Plot Size</span>
+                                            <span className="text-gray-900 font-medium">{villa.plot}</span>
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <span className="text-sm text-gray-500">Built-Up Area</span>
+                                            <span className="text-gray-900 font-medium">{villa.bua}</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-6">
+                                        <span className="text-sm text-gray-500">Price Range</span>
+                                        <p className="text-[#c0aa83] font-medium text-lg">{villa.price}</p>
+                                    </div>
+
+                                    <Button
+                                        asChild
+                                        className="w-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 hover:border-[#c0aa83] group-hover:border-[#c0aa83] group-hover:text-[#c0aa83] transition-all duration-300"
+                                    >
+                                        <Button onClick={openContactModal}>
+                                            <span>View Floor Plan</span>
+                                            <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Button>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
             {/* Key Features */}
             <section className="py-20 bg-gray-50">
                 <div className="container mx-auto px-4">
@@ -355,7 +477,43 @@ export default function OasisPalaceOstraLanding() {
             </section>
 
             {/* Villa Types */}
-            <section id="villa-types" className="py-20 bg-white">
+
+            {/* Payment Plan */}
+
+
+
+            <section className="py-12 md:py-16 bg-neutral-100 text-black">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-8 md:mb-12">
+                            <h2 className="text-3xl md:text-4xl font-serif bg-[#c0aa83] text-white py-3 md:py-4 px-4 md:px-8 tracking-wide md:tracking-widest">
+                                PAYMENT PLAN
+                            </h2>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12">
+                            {payments.map((payment, index) => (
+                                <div key={index} className="text-center px-4">
+                                    <div className="mb-1">
+                                        <span className="text-4xl md:text-5xl font-light text-[#c0aa83]">{payment.percent}</span>
+                                    </div>
+                                    <div className="mb-1">
+                                        <h3 className="text-base md:text-lg font-medium">{payment.title}</h3>
+                                    </div>
+                                    <div className="text-xs md:text-sm text-gray-600 mb-1">
+                                        {payment.subtitle}
+                                    </div>
+                                    <div className="text-xs md:text-sm">
+                                        {payment.date}
+                                    </div>
+                                    <div className="w-full h-px bg-[#c0aa83] mt-2 md:mt-3"></div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="location" className="py-20 bg-gray-50">
                 <div className="container mx-auto px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -365,140 +523,111 @@ export default function OasisPalaceOstraLanding() {
                         className="text-center mb-16"
                     >
                         <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-4">
-                            Exquisite <span className="text-[#c0aa83]">Villa Types</span>
+                            Prime <span className="text-[#c0aa83]">Location</span>
                         </h2>
                         <p className="text-gray-600 max-w-3xl mx-auto">
-                            Choose from a range of meticulously designed villas to suit your lifestyle and preferences.
+                            Strategically located in one of Dubai's most prestigious neighborhoods, offering the perfect balance of
+                            privacy and connectivity.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                        {[
-                            {
-                                title: "4 Bedroom Villa with Basement",
-                                plot: "9,081 sqft",
-                                bua: "7,287 sqft",
-                                price: "AED 13.13 up to 15.79 Million",
-                                image: "/bed4.png",
-                            },
-                            {
-                                title: "5 Bedroom Villa without Basement",
-                                plot: "9,548 sqft",
-                                bua: "7,986 sqft",
-                                price: "AED 14.56 up to 17.81 Million",
-                                image: "/bed5.png",
-                            },
-                            {
-                                title: "5 Bedroom Villa with Basement",
-                                plot: "11,500 sqft",
-                                bua: "10,359 sqft",
-                                price: "AED 18.25 up to 22.65 Million",
-                                image: "/bed5w.png",
-                            },
-                            {
-                                title: "5 Bedroom with Basement - Drop Type",
-                                plot: "10,935 sqft",
-                                bua: "11,111 sqft",
-                                price: "AED 22.15 up to 24.28 Million",
-                                image: "/bed5d.png",
-                            },
-                            {
-                                title: "6 Bedroom Villa with Basement",
-                                plot: "14,800 sqft",
-                                bua: "12,859 sqft",
-                                price: "AED 24.05 up to 27.96 Million",
-                                image: "/bed6.png",
-                            },
-                        ].map((villa, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group"
-                            >
-                                <div className="relative h-64 overflow-hidden">
-                                    <Image
-                                        src={villa.image || "/placeholder.svg"}
-                                        alt={villa.title}
-                                        fill
-                                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                                    <div className="absolute bottom-0 left-0 p-6">
-                                        <h3 className="text-xl font-medium text-white">{villa.title}</h3>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <div className="lg:col-span-2">
+                            <p className="text-gray-700 mb-6 leading-relaxed">
+                                Oasis Palace Ostra is strategically located in one of Dubai's most prestigious neighborhoods, offering
+                                residents the perfect balance of privacy and connectivity.
+                            </p>
+
+                            <p className="text-gray-700 mb-8 leading-relaxed">
+                                The development enjoys proximity to key landmarks, educational institutions, healthcare facilities, and
+                                leisure destinations, making it an ideal location for families and individuals seeking a premium
+                                lifestyle.
+                            </p>
+                            {/* 
+              <div className="bg-gray-100 rounded-lg overflow-hidden h-[400px] mb-8 relative">
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-gray-500">Interactive Map Would Be Displayed Here</p>
+                </div>
+              </div> */}
+
+                            <h3 className="text-xl font-medium text-gray-900 mb-4">Nearby Attractions</h3>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                                {[
+                                    { name: "Premium Shopping Mall", distance: "10 minutes" },
+                                    { name: "International Schools", distance: "15 minutes" },
+                                    { name: "Championship Golf Course", distance: "5 minutes" },
+                                    { name: "Beach Access", distance: "20 minutes" },
+                                    { name: "Business Districts", distance: "25 minutes" },
+                                    { name: "Dubai International Airport", distance: "30 minutes" },
+                                    { name: "Luxury Hotels & Resorts", distance: "15 minutes" },
+                                    { name: "Medical Centers", distance: "10 minutes" },
+                                ].map((attraction, index) => (
+                                    <div key={index} className="flex items-start">
+                                        <MapPin className="h-5 w-5 text-[#c0aa83] mr-3 mt-0.5 flex-shrink-0" />
+                                        <div>
+                                            <span className="text-gray-900 font-medium">{attraction.name}</span>
+                                            <p className="text-gray-600 text-sm">{attraction.distance} drive</p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="space-y-6">
+                            <div className="bg-white p-6 rounded-lg shadow-md">
+                                <h3 className="text-lg font-medium text-gray-900 mb-4">Location Highlights</h3>
+
+                                <div className="space-y-4">
+                                    <div className="flex justify-between">
+                                        <span className="text-gray-600">Area</span>
+                                        <span className="text-gray-900 font-medium">Dubai Land</span>
+                                    </div>
+                                    <Separator />
+
+                                    <div className="flex justify-between">
+                                        <span className="text-gray-600">Community Type</span>
+                                        <span className="text-gray-900 font-medium">Gated Luxury Villa Community</span>
+                                    </div>
+                                    <Separator />
+
+                                    <div className="flex justify-between">
+                                        <span className="text-gray-600">Security</span>
+                                        <span className="text-gray-900 font-medium">24/7 Manned & CCTV</span>
+                                    </div>
+                                    <Separator />
+
+                                    <div className="flex justify-between">
+                                        <span className="text-gray-600">Lifestyle</span>
+                                        <span className="text-gray-900 font-medium">Ultra-Luxury</span>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                                {/* <div className="relative h-48">
+                  <Image
+                    src="/placeholder.svg?height=400&width=600"
+                    alt="Oasis Palace Ostra Aerial View"
+                    fill
+                    className="object-cover"
+                  />
+                </div> */}
                                 <div className="p-6">
-                                    <div className="grid grid-cols-2 gap-4 mb-6">
-                                        <div className="flex flex-col">
-                                            <span className="text-sm text-gray-500">Plot Size</span>
-                                            <span className="text-gray-900 font-medium">{villa.plot}</span>
-                                        </div>
-                                        <div className="flex flex-col">
-                                            <span className="text-sm text-gray-500">Built-Up Area</span>
-                                            <span className="text-gray-900 font-medium">{villa.bua}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="mb-6">
-                                        <span className="text-sm text-gray-500">Price Range</span>
-                                        <p className="text-[#c0aa83] font-medium text-lg">{villa.price}</p>
-                                    </div>
-
-                                    <Button
-                                        asChild
-                                        className="w-full bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 hover:border-[#c0aa83] group-hover:border-[#c0aa83] group-hover:text-[#c0aa83] transition-all duration-300"
-                                    >
-                                        <Link href="/oasis-palace-ostra/details">
-                                            <span>View Details</span>
-                                            <ArrowRight className="ml-2 h-4 w-4" />
-                                        </Link>
+                                    <h3 className="text-lg font-medium capitalize text-gray-900 mb-2">Schedule a consultaion</h3>
+                                    <p className="text-gray-600 text-sm mb-4">
+                                        Experience the location firsthand with a guided tour of the development site.
+                                    </p>
+                                    <Button className="w-full capitalize bg-[#c0aa83] hover:bg-[#b09973] text-white" onClick={openContactModal}>
+                                        Schedule a consultaion
                                     </Button>
                                 </div>
-                            </motion.div>
-                        ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-
-            {/* Payment Plan */}
-           
-
-
-    <section className="py-12 md:py-16 bg-neutral-100 text-black">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif bg-[#c0aa83] text-white py-3 md:py-4 px-4 md:px-8 tracking-wide md:tracking-widest">
-              PAYMENT PLAN
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-12">
-            {payments.map((payment, index) => (
-              <div key={index} className="text-center px-4">
-                <div className="mb-1">
-                  <span className="text-4xl md:text-5xl font-light text-[#c0aa83]">{payment.percent}</span>
-                </div>
-                <div className="mb-1">
-                  <h3 className="text-base md:text-lg font-medium">{payment.title}</h3>
-                </div>
-                <div className="text-xs md:text-sm text-gray-600 mb-1">
-                  {payment.subtitle}
-                </div>
-                <div className="text-xs md:text-sm">
-                  {payment.date}
-                </div>
-                <div className="w-full h-px bg-[#c0aa83] mt-2 md:mt-3"></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
 
             {/* CTA Section */}
             <section className="py-20 bg-white">
@@ -524,7 +653,7 @@ export default function OasisPalaceOstraLanding() {
 
                             <div className="flex flex-col md:flex-row gap-8 items-center justify-between">
                                 <div className="flex items-center">
-                               
+
                                     <div>
                                         <p className="text-gray-700">For inquiries, contact</p>
                                         <h3 className="text-xl font-serif text-[#c0aa83]">Noor Saray Real Estate</h3>
@@ -532,9 +661,7 @@ export default function OasisPalaceOstraLanding() {
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row gap-4">
-                                    <Button asChild className="bg-[#c0aa83] hover:bg-[#b09973] text-white border-none px-8 py-6 text-lg">
-                                        <Link href="/oasis-palace-ostra/details">Explore Details</Link>
-                                    </Button>
+
                                     <Button
                                         variant="outline"
                                         className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
