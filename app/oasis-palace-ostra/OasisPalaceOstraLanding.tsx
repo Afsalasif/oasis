@@ -9,6 +9,64 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import ContactModal from "@/components/ContactModal"
 import { Separator } from "@/components/ui/separator"
+const HeroSlider = () => {
+    const [currentSlide, setCurrentSlide] = useState(0)
+
+    const slides = [
+        "/lux.png",
+        "/hero.png",
+        "/hero2.png",
+        
+    ]
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1))
+        }, 5000)
+
+        return () => clearInterval(interval)
+    }, [slides.length])
+
+    return (
+        <div className="relative w-full h-full overflow-hidden">
+            {slides.map((slide, index) => (
+                <motion.div
+                    key={index}
+                    className="absolute inset-0"
+                    initial={{ opacity: 0 }}
+                    animate={{
+                        opacity: currentSlide === index ? 1 : 0,
+                        scale: currentSlide === index ? 1 : 1.1,
+                    }}
+                    transition={{
+                        opacity: { duration: 1.5 },
+                        scale: { duration: 8 },
+                    }}
+                >
+                    <Image
+                        src={slide || "/placeholder.svg"}
+                        alt={`Oasis Palace Ostra - Slide ${index + 1}`}
+                        fill
+                        className="object-cover"
+                        priority={index === 0}
+                    />
+                </motion.div>
+            ))}
+
+            <div className="absolute bottom-8 left-0 right-0 z-10 flex justify-center gap-2">
+                {slides.map((_, index) => (
+                    <button
+                        key={index}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${currentSlide === index ? "w-6 bg-[#c0aa83]" : "bg-white/50"
+                            }`}
+                        onClick={() => setCurrentSlide(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                    />
+                ))}
+            </div>
+        </div>
+    )
+}
+
 
 export default function OasisPalaceOstraLanding() {
     const [isVisible, setIsVisible] = useState(false)
@@ -17,6 +75,7 @@ export default function OasisPalaceOstraLanding() {
     const openContactModal = () => {
         setIsContactModalOpen(true)
     }
+ 
     const payments = [
         { percent: '10%', title: 'Down Payment', subtitle: 'On Booking', date: '' },
         { percent: '10%', title: '1st Installment', subtitle: '', date: 'June 2025' },
@@ -61,15 +120,9 @@ export default function OasisPalaceOstraLanding() {
                     <div className=" h-40 z-30 w-40">
                         <img className="h-full invert w-full" src="/noorsaraylogo.svg" alt="" /></div>
                 </div>
-
+                {/* Animated Slider */}
                 <div className="absolute inset-0">
-                    <Image
-                        src="/hero.png"
-                        alt="Oasis Palace Ostra"
-                        fill
-                        className="object-cover"
-                        priority
-                    />
+                    <HeroSlider />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/50 z-20"></div>
 
@@ -158,31 +211,6 @@ export default function OasisPalaceOstraLanding() {
                 <div className="container mx-auto px-4">
                     <div className="flex flex-col md:flex-row justify-between items-center">
                         <div className="mb-6 md:mb-0">
-                            <div className="flex items-center">
-
-                                <div>
-                                    <p className="text-gray-900 font-medium">Brought to you by</p>
-                                    <h3 className="text-xl font-serif text-[#c0aa83]">Noor Saray Real Estate</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex gap-4">
-                            {/* <Button asChild variant="outline" className="border-[#c0aa83] capitalize text-[#c0aa83] hover:bg-[#c0aa83]/5">
-                                <Link href="https://wa.me/+971501527835" target="_blank" rel="noopener noreferrer">
-                                    contact us
-                                </Link>
-                            </Button> */}
-                            <a
-  href="tel:+97141234567"
-  className="bg-[#c0aa83] capitalize hover:bg-[#b09973] text-white px-6 py-3 z-50 rounded-lg text-center font-medium transition duration-300 shadow-md"
->
-  Give a call
-</a>
-
-
-
-
-
                         </div>
                     </div>
                 </div>
@@ -525,10 +553,7 @@ export default function OasisPalaceOstraLanding() {
                         <h2 className="text-3xl md:text-4xl font-serif text-gray-900 mb-4">
                             Prime <span className="text-[#c0aa83]">Location</span>
                         </h2>
-                        <p className="text-gray-600 max-w-3xl mx-auto">
-                            Strategically located in one of Dubai's most prestigious neighborhoods, offering the perfect balance of
-                            privacy and connectivity.
-                        </p>
+
                     </motion.div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
