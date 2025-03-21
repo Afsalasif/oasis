@@ -15,6 +15,21 @@ export default function OasisPalaceOstraDetails() {
   const [activeTab, setActiveTab] = useState("overview");
   const [isVisible, setIsVisible] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 1024)
+    }
+
+    checkIfMobile()
+    window.addEventListener("resize", checkIfMobile)
+    console.log(isMobile)
+
+    return () => {
+      window.removeEventListener("resize", checkIfMobile)
+    }
+  }, [])
 
   const openContactModal = () => {
     setIsContactModalOpen(true);
@@ -498,141 +513,189 @@ export default function OasisPalaceOstraDetails() {
 
           {/* Villa Types Tab */}
           <TabsContent value="villa-types" className="mt-0">
-            <motion.div
-              initial="hidden"
-              animate={isVisible ? "visible" : "hidden"}
-              variants={fadeIn}
-            >
+            <motion.div initial="hidden" animate={isVisible ? "visible" : "hidden"} variants={fadeIn}>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
                 <div className="lg:col-span-2">
-                  <h2 className="text-2xl md:text-3xl font-serif text-gray-900 mb-6">
-                    Exquisite Villa Types
-                  </h2>
+                  <h2 className="text-2xl md:text-3xl font-serif text-gray-900 mb-6">Exquisite Villa Types</h2>
                   <p className="text-gray-700 mb-8">
-                    Oasis Palace Ostra offers a range of meticulously designed
-                    villas to suit different preferences and lifestyle needs.
-                    Each villa type features premium finishes, smart home
-                    technology, and palace-inspired architectural elements.
+                    Oasis Palace Ostra offers a range of meticulously designed villas to suit different preferences and
+                    lifestyle needs. Each villa type features premium finishes, smart home technology, and
+                    palace-inspired architectural elements.
                   </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                <div className="lg:col-span-1 space-y-4">
-                  {villaTypes.map((villa) => (
-                    <div
-                      key={villa.id}
-                      className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${
-                        selectedVilla.id === villa.id
-                          ? "bg-[#c0aa83]/10 border-l-4 border-[#c0aa83]"
-                          : "bg-gray-50 hover:bg-gray-100"
-                      }`}
-                      onClick={() => setSelectedVilla(villa)}
-                    >
-                      <h3
-                        className={`font-medium mb-2 ${
+              {/* Desktop Layout */}
+              {!isMobile && (
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                  <div className="lg:col-span-1 space-y-4">
+                    {villaTypes.map((villa) => (
+                      <div
+                        key={villa.id}
+                        className={`p-4 rounded-lg cursor-pointer transition-all duration-300 ${
                           selectedVilla.id === villa.id
-                            ? "text-[#c0aa83]"
-                            : "text-gray-900"
+                            ? "bg-[#c0aa83]/10 border-l-4 border-[#c0aa83]"
+                            : "bg-gray-50 hover:bg-gray-100"
                         }`}
+                        onClick={() => setSelectedVilla(villa)}
                       >
-                        {villa.title}
-                      </h3>
-                      <p className="text-sm text-gray-600">{villa.price}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="lg:col-span-3">
-                  <div className="bg-white rounded-lg overflow-hidden shadow-lg">
-                    <div className="relative h-[300px] md:h-[400px]">
-                      <Image
-                        src={selectedVilla.image || "/placeholder.svg"}
-                        alt={selectedVilla.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-xl font-medium text-gray-900 mb-4">
-                        {selectedVilla.title}
-                      </h3>
-
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                        <div className="flex flex-col">
-                          <span className="text-sm text-gray-500">
-                            Plot Size
-                          </span>
-                          <span className="text-gray-900 font-medium">
-                            {selectedVilla.plot}
-                          </span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-sm text-gray-500">
-                            Built-Up Area
-                          </span>
-                          <span className="text-gray-900 font-medium">
-                            {selectedVilla.bua}
-                          </span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-sm text-gray-500">
-                            Bedrooms
-                          </span>
-                          <span className="text-gray-900 font-medium">
-                            {selectedVilla.bedrooms}
-                          </span>
-                        </div>
-                        <div className="flex flex-col">
-                          <span className="text-sm text-gray-500">
-                            Bathrooms
-                          </span>
-                          <span className="text-gray-900 font-medium">
-                            {selectedVilla.bathrooms}
-                          </span>
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <span className="text-sm text-gray-500">
-                          Price Range
-                        </span>
-                        <p className="text-[#c0aa83] font-medium text-lg">
-                          {selectedVilla.price}
-                        </p>
-                      </div>
-
-                      <Separator className="mb-6" />
-
-                      <h4 className="font-medium text-gray-900 mb-4">
-                        Key Features
-                      </h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-                        {selectedVilla.features.map((feature, index) => (
-                          <div key={index} className="flex items-start">
-                            <Check className="h-4 w-4 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700 text-sm">
-                              {feature}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        {/* <Button className="bg-[#c0aa83] hover:bg-[#b09973] text-white">Download Floor Plan</Button> */}
-                        <Button
-                          variant="outline"
-                          className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
-                          onClick={openContactModal}
+                        <h3
+                          className={`font-medium mb-2 ${
+                            selectedVilla.id === villa.id ? "text-[#c0aa83]" : "text-gray-900"
+                          }`}
                         >
-                          Contact Sales Team
-                        </Button>
+                          {villa.title}
+                        </h3>
+                        <p className="text-sm text-gray-600">{villa.price}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="lg:col-span-3">
+                    <div className="bg-white rounded-lg overflow-hidden shadow-lg">
+                      <div className="relative h-[300px] md:h-[400px]">
+                        <Image
+                          src={selectedVilla.image || "/placeholder.svg"}
+                          alt={selectedVilla.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+
+                      <div className="p-6">
+                        <h3 className="text-xl font-medium text-gray-900 mb-4">{selectedVilla.title}</h3>
+
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                          <div className="flex flex-col">
+                            <span className="text-sm text-gray-500">Plot Size</span>
+                            <span className="text-gray-900 font-medium">{selectedVilla.plot}</span>
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm text-gray-500">Built-Up Area</span>
+                            <span className="text-gray-900 font-medium">{selectedVilla.bua}</span>
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm text-gray-500">Bedrooms</span>
+                            <span className="text-gray-900 font-medium">{selectedVilla.bedrooms}</span>
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-sm text-gray-500">Bathrooms</span>
+                            <span className="text-gray-900 font-medium">{selectedVilla.bathrooms}</span>
+                          </div>
+                        </div>
+
+                        <div className="mb-6">
+                          <span className="text-sm text-gray-500">Price Range</span>
+                          <p className="text-[#c0aa83] font-medium text-lg">{selectedVilla.price}</p>
+                        </div>
+
+                        <Separator className="mb-6" />
+
+                        <h4 className="font-medium text-gray-900 mb-4">Key Features</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                          {selectedVilla.features.map((feature, index) => (
+                            <div key={index} className="flex items-start">
+                              <Check className="h-4 w-4 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 text-sm">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* <div className="flex flex-col sm:flex-row gap-4">
+                          <Button className="bg-[#c0aa83] hover:bg-[#b09973] text-white">Download Floor Plan</Button>
+                          <Button variant="outline" className="border-gray-300" onClick={openContactModal}>
+                            Request More Info
+                          </Button>
+                        </div> */}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
+
+              {/* Mobile Layout */}
+              {isMobile && (
+                <div className="space-y-4">
+                  {villaTypes.map((villa) => (
+                    <div key={villa.id} className="bg-white rounded-lg overflow-hidden shadow-md">
+                      <div
+                        className={`p-4 cursor-pointer transition-all duration-300 ${
+                          selectedVilla.id === villa.id
+                            ? "bg-[#c0aa83]/10 border-l-4 border-[#c0aa83]"
+                            : "bg-gray-50 hover:bg-gray-100"
+                        }`}
+                        onClick={() => setSelectedVilla(villa)}
+                      >
+                        <div className="flex justify-between items-center">
+                          <h3
+                            className={`font-medium ${
+                              selectedVilla.id === villa.id ? "text-[#c0aa83]" : "text-gray-900"
+                            }`}
+                          >
+                            {villa.title}
+                          </h3>
+                          <div className="text-sm text-gray-600">{villa.price}</div>
+                        </div>
+                      </div>
+
+                      {selectedVilla.id === villa.id && (
+                        <div className="animate-fadeIn">
+                          <div className="relative h-[250px]">
+                            <Image
+                              src={villa.image || "/placeholder.svg"}
+                              alt={villa.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+
+                          <div className="p-4">
+                            <div className="grid grid-cols-2 gap-4 mb-4">
+                              <div className="flex flex-col">
+                                <span className="text-sm text-gray-500">Plot Size</span>
+                                <span className="text-gray-900 font-medium">{villa.plot}</span>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-sm text-gray-500">Built-Up Area</span>
+                                <span className="text-gray-900 font-medium">{villa.bua}</span>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-sm text-gray-500">Bedrooms</span>
+                                <span className="text-gray-900 font-medium">{villa.bedrooms}</span>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-sm text-gray-500">Bathrooms</span>
+                                <span className="text-gray-900 font-medium">{villa.bathrooms}</span>
+                              </div>
+                            </div>
+
+                            <Separator className="mb-4" />
+
+                            <h4 className="font-medium text-gray-900 mb-3">Key Features</h4>
+                            <div className="grid grid-cols-1 gap-2 mb-4">
+                              {villa.features.map((feature, index) => (
+                                <div key={index} className="flex items-start">
+                                  <Check className="h-4 w-4 text-[#c0aa83] mr-2 mt-0.5 flex-shrink-0" />
+                                  <span className="text-gray-700 text-sm">{feature}</span>
+                                </div>
+                              ))}
+                            </div>
+
+                            <div className="flex flex-col gap-3">
+                              <Button className="bg-[#c0aa83] hover:bg-[#b09973] text-white">
+                                Download Floor Plan
+                              </Button>
+                              <Button variant="outline" className="border-gray-300" onClick={openContactModal}>
+                                Request More Info
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
             </motion.div>
           </TabsContent>
 
