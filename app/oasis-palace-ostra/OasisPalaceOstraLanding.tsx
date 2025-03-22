@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import ContactModal from "@/components/ContactModal"
 import { Separator } from "@/components/ui/separator"
+import ContactMe from "@/components/ContactMe"
 const HeroSlider = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -71,9 +72,14 @@ const HeroSlider = () => {
 export default function OasisPalaceOstraLanding() {
     const [isVisible, setIsVisible] = useState(false)
     const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+    const [isContactMe, setIsContactMe] = useState(false)
+
 
     const openContactModal = () => {
         setIsContactModalOpen(true)
+    }
+    const openContactMe = () => {
+        setIsContactMe(true)
     }
 
     const payments = [
@@ -90,6 +96,9 @@ export default function OasisPalaceOstraLanding() {
 
     const closeContactModal = () => {
         setIsContactModalOpen(false)
+    }
+    const closeContactMe = () => {
+        setIsContactMe(false)
     }
     useEffect(() => {
         setIsVisible(true)
@@ -112,6 +121,7 @@ export default function OasisPalaceOstraLanding() {
     return (
         <div className="bg-white">
             <ContactModal isOpen={isContactModalOpen} onClose={closeContactModal} />
+            <ContactMe isOpen={isContactMe} onClose={closeContactMe} />
             {/* Hero Section */}
             <section className="relative h-screen">
                 <div className="absolute inset-0 bg-black/30 z-10"></div>
@@ -691,7 +701,7 @@ export default function OasisPalaceOstraLanding() {
                                     <Button
                                         variant="outline"
                                         className="border-gray-300 text-gray-700 hover:bg-gray-50 px-8 py-6 text-lg"
-                                        onClick={openContactModal}
+                                        onClick={openContactMe}
                                     >
                                         Contact Sales Team
                                     </Button>
